@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+// import nécessaire au bon fonctionnement du modèle
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,6 +11,7 @@ class User extends Authenticatable
 {
     use HasUuids, Notifiable;
 
+    // variables protégés
     protected $fillable = [
         'name',
         'email',
@@ -18,15 +20,17 @@ class User extends Authenticatable
         'role',
     ];
 
+    
     protected $hidden = [
-        'password', //On cache toujours le mot de passe dans le JSON
+        'password', // le mot de passe est caché dans le JSON
         'remember_token',
     ];
 
     protected function casts(): array
     {
         return [
-            'password' => 'hashed', // Hashage automatique
+            // Hashage automatique du password
+            'password' => 'hashed', 
         ];
     }
 }
